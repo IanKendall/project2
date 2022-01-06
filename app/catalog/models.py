@@ -12,7 +12,7 @@ class WordStructure(models.Model):
     phonics = models.CharField(max_length=90, null=False, help_text='letter sounds')
     links = models.CharField(max_length=60, null=False, help_text='how letter sounds relate to letters')
     irregulars = models.CharField(max_length=10, null=False, help_text='irregular sounds')
-    hash = models.CharField(max_length=20, help_text='word as a number related to consonant sounds')
+    hash = models.CharField(max_length=20, null=True, help_text='word as a number related to consonant sounds')
 
     # Metadata
     class Meta:
@@ -28,7 +28,7 @@ class WordStructure(models.Model):
         return self.word
 
 
-class AllWords(models.Model):
+class AllWord(models.Model):
     """A typical class defining a model, derived from the Model class."""
 
     # Fields
@@ -48,16 +48,16 @@ class AllWords(models.Model):
         return self.word
 
 
-class Synonyms(models.Model):
+class Synonym(models.Model):
     """connection from WordStructure to AllWords, derived from the Model class."""
 
     # Fields
     word_structure = models.ForeignKey(WordStructure, on_delete=models.PROTECT)
-    all_words = models.ForeignKey(AllWords, on_delete=models.PROTECT)
+    all_word = models.ForeignKey(AllWord, on_delete=models.PROTECT)
 
     # Metadata
     class Meta:
-        ordering = ['word_structure', 'all_words']
+        ordering = ['word_structure', 'all_word']
 
     # Methods
     def get_absolute_url(self):
@@ -69,16 +69,16 @@ class Synonyms(models.Model):
         return self.word_structure
 
     
-class Antonyms(models.Model):
+class Antonym(models.Model):
     """connection from WordStructure to AllWords, derived from the Model class."""
 
     # Fields
     word_structure = models.ForeignKey(WordStructure, on_delete=models.PROTECT)
-    all_words = models.ForeignKey(AllWords, on_delete=models.PROTECT)
+    all_word = models.ForeignKey(AllWord, on_delete=models.PROTECT)
 
     # Metadata
     class Meta:
-        ordering = ['word_structure', 'all_words']
+        ordering = ['word_structure', 'all_word']
 
     # Methods
     def get_absolute_url(self):
