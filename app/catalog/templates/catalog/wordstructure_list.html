@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Word Structure List</h1>
+{% if wordstructure_list %}
+<ul>
+    {% for wordstructure in wordstructure_list %}
+    <li>
+        <a href="{{ wordstructures.get_absolute_url }}">{{ wordstructures.word }}</a> ({{wordstructures.phonics}})
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>There are no Word Structures in the database.</p>
+{% endif %}
+{% endblock %}

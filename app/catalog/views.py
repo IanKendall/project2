@@ -18,3 +18,12 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+from django.views import generic
+
+class WordStructureView(generic.ListView):
+    model = WordStructure
+    paginate_by = 10
+
+class WordStructureDetailView(generic.DetailView):
+    model = WordStructure
