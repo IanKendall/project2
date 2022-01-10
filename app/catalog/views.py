@@ -1,4 +1,10 @@
 from django.shortcuts import render
+from django.http.response import JsonResponse
+from rest_framework.parsers import JSONParser
+from rest_framework import status
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 # Create your views here.
 
@@ -23,7 +29,7 @@ from django.views import generic
 
 class WordStructureView(generic.ListView):
     model = WordStructure
-    paginate_by = 10
+    paginate_by = 20
 
 class WordStructureDetailView(generic.DetailView):
     model = WordStructure

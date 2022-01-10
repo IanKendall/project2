@@ -6,7 +6,8 @@
 <ul>
     {% for wordstructure in wordstructure_list %}
     <li>
-        <a href="{{ wordstructures.get_absolute_url }}">{{ wordstructures.word }}</a> ({{wordstructures.phonics}})
+        <a href="{{ wordstructures.get_absolute_url }}">{{ wordstructure.word }}</a> ({{wordstructure.phonics}})
+        ({{wordstructure.links }})({{ wordstructure.hash }}){{ wordstructure.id }}
     </li>
     {% endfor %}
 </ul>
