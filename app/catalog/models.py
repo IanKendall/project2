@@ -11,8 +11,8 @@ class WordStructure(models.Model):
     word = models.CharField(max_length=30, null=False)
     phonics = models.CharField(max_length=90, null=False, help_text='letter sounds')
     links = models.CharField(max_length=60, null=False, help_text='how letter sounds relate to letters')
-    irregulars = models.CharField(max_length=10, null=False, help_text='irregular sounds')
-    hash = models.CharField(max_length=20, null=True, help_text='word as a number related to consonant sounds')
+    irregulars = models.CharField(max_length=10, null=False, blank=True, help_text='irregular sounds')
+    hash = models.CharField(max_length=90, null=True, help_text='word as a number related to consonant sounds')
 
     # Metadata
     class Meta:
