@@ -50,10 +50,6 @@ class HelloApiView(APIView):
 
         return Response({'message': 'Hello!', 'an_apiview': an_apiview})
 
-''' class WordDataView(viewsets.ModelViewSet):
-    queryset = WordStructure.objects.all().order_by('word')
-    serializer_class = WordStructureSerializer '''
-
 
 class WordDataView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
@@ -108,7 +104,20 @@ def worddata_detail(request, pk):
         word.delete()
         return JsonResponse({'message': 'Word structure was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
         
-        
+@api_view(['GET'])
+def worddata_search_word(request, wd):
+    try:
+        wordstr = WordStructure.objects.get(word=wd)
+    except WordStructure.DoesNotExist:
+        return JsonResponse({'message': 'The word structure does not exist for this word'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        word_structure_serializer = WordStructureSerializer(wordstr)
+        return JsonResponse(word_structure_serializer.data)
+
+
+
+
 
 
 

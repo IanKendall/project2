@@ -7,7 +7,8 @@ urlpatterns = [
     path('', catalog_views.index, name='index'),
     path('wordstructures/', catalog_views.WordStructureView.as_view(), name='wordstructures'),
     path('wordstructure/<int:pk>', catalog_views.WordStructureDetailView.as_view(), name='wordstructure-detail'),
-    path('hello-view/', catalog_views.HelloApiView.as_view()),
+    path('hello-view/', catalog_views.HelloApiView),
     path('worddata/', catalog_views.worddata_list),
     path('worddata/<int:pk>', catalog_views.worddata_detail),
+    path('worddata/<str:wd>', catalog_views.worddata_search_word),
 ]
